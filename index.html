@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fun Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      padding: 20px;
+      margin: 0;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    .quiz-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .question {
+      margin-bottom: 30px;
+    }
+    .question img {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    .options label {
+      display: block;
+      margin: 8px 0;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .submit-btn {
+      background: #4CAF50;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      display: block;
+      margin: auto;
+    }
+    .submit-btn:hover {
+      background-color: #45a049;
+    }
+    .result {
+      margin-top: 25px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    /* Responsive styling */
+    @media (max-width: 768px) {
+      .quiz-container {
+        padding: 15px;
+      }
+      .options label {
+        font-size: 15px;
+      }
+      .submit-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 22px;
+      }
+      .submit-btn {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-container">
+    <h1>Fun Quiz Time!</h1>
+
+    <form id="quizForm">
+      <div class="question">
+        <p>1. What animal is known as the king of the jungle?</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg" alt="Lion">
+        <div class="options">
+          <label><input type="radio" name="q1" value="a"> Elephant</label>
+          <label><input type="radio" name="q1" value="b"> Tiger</label>
+          <label><input type="radio" name="q1" value="c"> Lion</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>2. What is the capital of France?</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg" alt="Eiffel Tower">
+        <div class="options">
+          <label><input type="radio" name="q2" value="a"> Rome</label>
+          <label><input type="radio" name="q2" value="b"> Paris</label>
+          <label><input type="radio" name="q2" value="c"> Madrid</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>3. Which planet is known as the Red Planet?</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" alt="Mars">
+        <div class="options">
+          <label><input type="radio" name="q3" value="a"> Mars</label>
+          <label><input type="radio" name="q3" value="b"> Venus</label>
+          <label><input type="radio" name="q3" value="c"> Jupiter</label>
+        </div>
+      </div>
+
+      <button type="button" class="submit-btn" onclick="checkAnswers()">Submit</button>
+      <div class="result" id="resultBox"></div>
+    </form>
+  </div>
+
+  <script>
+    function checkAnswers() {
+      const answers = {
+        q1: "c",
+        q2: "b",
+        q3: "a"
+      };
+
+      let score = 0;
+      for (let key in answers) {
+        const selected = document.querySelector(`input[name="${key}"]:checked`);
+        if (selected && selected.value === answers[key]) {
+          score++;
+        }
+      }
+
+      document.getElementById("resultBox").textContent = `You scored ${score} out of 3!`;
+    }
+  </script>
+
+</body>
+</html>
